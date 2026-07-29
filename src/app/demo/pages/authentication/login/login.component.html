@@ -1,0 +1,254 @@
+<div class="auth-main">
+
+  <div class="auth-wrapper v3">
+
+    <div class="auth-form">
+
+      <div class="card auth-card my-5">
+
+        <div class="card-body">
+
+
+          <form (submit)="onSubmit($event)">
+
+
+            <!-- LOGO -->
+            <a href="javascript:void(0)" class="d-flex justify-content-center">
+
+              <img 
+                src="assets/images/logo-dark.svg" 
+                alt="logo" />
+
+            </a>
+
+
+            <!-- HEADER -->
+            <div class="row">
+
+              <div class="d-flex justify-content-center">
+
+                <div class="auth-header">
+
+                  <h2 class="text-secondary mt-5">
+
+                    <b>
+                      Hi, Welcome Back
+                    </b>
+
+                  </h2>
+
+
+                  <p class="f-16 mt-2">
+
+                    Enter your credentials to continue
+
+                  </p>
+
+
+                </div>
+
+              </div>
+
+            </div>
+
+
+
+            <!-- EMAIL -->
+            <div class="form-floating mb-3">
+
+
+              <input
+
+                type="email"
+
+                id="floatingInput"
+
+                class="form-control"
+
+                placeholder="Email"
+
+                [formField]="loginForm.email"
+
+                [class.is-invalid]="submitted() && loginForm.email().invalid()" />
+
+
+              <label for="floatingInput">
+
+                Email address
+
+              </label>
+
+
+
+              @if (submitted() && loginForm.email().invalid()) {
+
+
+                <div class="invalid-feedback">
+
+
+                  @for (error of loginForm.email().errors(); track error.kind) {
+
+
+                    <div>
+
+                      {{ error.message }}
+
+                    </div>
+
+
+                  }
+
+
+                </div>
+
+
+              }
+
+
+            </div>
+
+
+
+
+            <!-- PASSWORD -->
+            <div class="form-floating mb-3">
+
+
+              <input
+
+                type="password"
+
+                id="password"
+
+                class="form-control"
+
+                placeholder="Password"
+
+                [formField]="loginForm.motDePasse"
+
+                [class.is-invalid]="submitted() && loginForm.motDePasse().invalid()" />
+
+
+
+              <label for="password">
+
+                Password
+
+              </label>
+
+
+
+
+              @if (submitted() && loginForm.motDePasse().invalid()) {
+
+
+                <div class="invalid-feedback">
+
+
+                  @for (error of loginForm.motDePasse().errors(); track error.kind) {
+
+
+                    <div>
+
+                      {{ error.message }}
+
+                    </div>
+
+
+                  }
+
+
+                </div>
+
+
+              }
+
+
+            </div>
+
+
+
+
+
+            <!-- ERROR MESSAGE -->
+            @if (error()) {
+
+
+              <div
+
+                class="alert alert-danger mt-3"
+
+                role="alert">
+
+
+                {{ error() }}
+
+
+              </div>
+
+
+            }
+
+
+
+
+
+            <!-- LOGIN BUTTON -->
+            <div class="d-grid mt-4">
+
+
+              <button
+
+                class="btn btn-secondary"
+
+                type="submit"
+
+                [disabled]="loading()">
+
+
+
+                @if (loading()) {
+
+
+                  <span
+
+                    class="spinner-border spinner-border-sm me-2">
+
+                  </span>
+
+
+
+                  Connexion...
+
+
+
+                } @else {
+
+
+
+                  Sign In
+
+
+
+                }
+
+
+              </button>
+
+
+            </div>
+
+
+
+          </form>
+
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>

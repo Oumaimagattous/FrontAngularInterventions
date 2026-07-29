@@ -1,0 +1,344 @@
+/* ==============================
+   CONTRAT DETAIL PAGE
+================================ */
+
+
+.card {
+
+  border-radius: 15px;
+
+  border: none;
+
+  overflow: hidden;
+
+  box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+
+}
+
+
+
+/* Header */
+
+.card-header {
+
+
+  padding: 18px 25px;
+
+  font-size: 18px;
+
+  background: linear-gradient(
+    135deg,
+    #2563eb,
+    #4f46e5
+  );
+
+}
+
+
+
+.card-header h3 {
+
+  font-weight: 600;
+
+}
+
+
+
+
+
+/* Retour button */
+
+.card-header .btn-light {
+
+
+  border-radius: 8px;
+
+  font-weight: 500;
+
+  transition: .3s;
+
+
+}
+
+
+
+.card-header .btn-light:hover {
+
+
+  transform: translateX(-3px);
+
+}
+
+
+
+
+
+/* Informations contrat */
+
+
+h4 {
+
+
+  font-weight: 700;
+
+}
+
+
+
+.text-blue-700 {
+
+
+  color:#1d4ed8;
+
+}
+
+
+
+
+
+p {
+
+
+  font-size: 15px;
+
+  margin-bottom: 12px;
+
+
+}
+
+
+
+p b {
+
+
+  color:#374151;
+
+
+}
+
+
+
+
+
+
+/* Information box */
+
+
+.bg-blue-100 {
+
+
+  background:#dbeafe !important;
+
+}
+
+
+
+.card.bg-blue-100 {
+
+
+  border-radius:12px;
+
+  border:none;
+
+
+}
+
+
+
+.card.bg-blue-100 .card-body {
+
+
+  padding:20px;
+
+
+}
+
+
+
+
+
+
+
+/* Section prestations */
+
+
+h4.mb-3 {
+
+
+  font-weight:700;
+
+  display:flex;
+
+  align-items:center;
+
+  gap:8px;
+
+
+}
+
+
+
+
+
+
+
+/* Table */
+
+
+.table-responsive {
+
+
+  border-radius:12px;
+
+  overflow:hidden;
+
+}
+
+
+
+
+.table {
+
+
+  margin-bottom:0;
+
+}
+
+
+
+.table thead th {
+
+
+  background:#2563eb;
+
+  color:white;
+
+  font-weight:600;
+
+  text-align:center;
+
+
+}
+
+
+
+.table tbody td {
+
+
+  vertical-align:middle;
+
+  text-align:center;
+
+
+}
+
+
+
+.table tbody tr {
+
+
+  transition:.25s;
+
+
+}
+
+
+
+.table tbody tr:hover {
+
+
+  background:#eff6ff;
+
+  transform:scale(1.005);
+
+
+}
+
+
+
+
+
+
+
+/* Badge devise */
+
+
+.badge {
+
+
+  padding:7px 14px;
+
+  border-radius:20px;
+
+  font-size:13px;
+
+
+}
+
+
+
+
+
+
+/* Loading */
+
+
+.spinner-border {
+
+
+  width:45px;
+
+  height:45px;
+
+
+}
+
+
+
+
+
+
+/* Empty state */
+
+
+.text-center h5 {
+
+
+  font-weight:600;
+
+}
+
+
+
+
+
+/* Responsive */
+
+
+@media(max-width:768px){
+
+
+.card-header {
+
+
+ flex-direction:column;
+
+ gap:15px;
+
+ align-items:start !important;
+
+
+}
+
+
+
+.table {
+
+
+ font-size:13px;
+
+
+}
+
+
+}

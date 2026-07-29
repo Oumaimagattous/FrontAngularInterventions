@@ -1,0 +1,45 @@
+.card {
+
+    border-radius: 15px;
+
+    overflow: hidden;
+
+}
+
+.card-header {
+
+    padding: 18px 24px;
+
+}
+
+.form-label {
+
+    font-weight: 600;
+
+    color: #374151;
+
+}
+
+.form-control {
+
+    border-radius: 10px;
+
+    padding: 10px 14px;
+
+}
+
+.form-control:focus {
+
+    border-color: #2563eb;
+
+    box-shadow: 0 0 0 .15rem rgba(37, 99, 235, .15);
+
+}
+
+.btn {
+
+    border-radius: 10px;
+
+    padding: 8px 18px;
+
+}

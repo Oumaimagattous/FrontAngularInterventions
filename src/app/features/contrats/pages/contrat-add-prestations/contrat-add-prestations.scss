@@ -1,0 +1,60 @@
+.card {
+
+border-radius:15px;
+
+overflow:hidden;
+
+}
+
+
+
+.prestation-card {
+
+cursor:pointer;
+
+transition:.3s;
+
+border:2px solid transparent;
+
+}
+
+
+
+.prestation-card:hover {
+
+
+transform:translateY(-5px);
+
+
+}
+
+
+
+.prestation-card.selected {
+
+
+border-color:#2563eb;
+
+
+background:#eff6ff;
+
+
+}
+
+
+
+.card-header {
+
+
+padding:20px;
+
+}
+
+
+
+.btn {
+
+
+border-radius:10px;
+
+}

@@ -1,0 +1,203 @@
+<div class="card">
+
+
+<div class="card-header bg-blue-600 text-white">
+
+
+<h3 class="mb-0">
+
+Ajouter un contrat
+
+</h3>
+
+
+</div>
+
+
+
+
+<div class="card-body">
+
+
+<form [formGroup]="form"
+(ngSubmit)="save()">
+
+
+
+<div class="row">
+
+
+
+<div class="col-md-6 mb-3">
+
+
+<label class="form-label">
+
+Référence
+
+</label>
+
+
+<input
+type="text"
+class="form-control"
+formControlName="reference"
+placeholder="Ex: CTR-2026-001">
+
+
+
+</div>
+
+
+
+
+
+
+<div class="col-md-6 mb-3">
+
+
+<label class="form-label">
+
+Client
+
+</label>
+
+
+
+<select
+class="form-select"
+formControlName="clientId">
+
+
+
+<option [ngValue]="null">
+
+-- Choisir un client --
+
+</option>
+
+
+
+<option
+*ngFor="let client of clients"
+[value]="client.id">
+
+
+{{client.raisonSociale}}
+
+
+</option>
+
+
+
+</select>
+
+
+</div>
+
+
+
+
+
+
+
+<div class="col-md-6 mb-3">
+
+
+<label class="form-label">
+
+Date début
+
+</label>
+
+
+
+<input
+type="date"
+class="form-control"
+formControlName="dateDebut">
+
+
+</div>
+
+
+
+
+
+
+<div class="col-md-6 mb-3">
+
+
+<label class="form-label">
+
+Date fin
+
+</label>
+
+
+
+<input
+type="date"
+class="form-control"
+formControlName="dateFin">
+
+
+</div>
+
+
+
+</div>
+
+
+
+
+
+
+<div class="text-end">
+
+
+<button
+type="button"
+class="btn btn-secondary me-2"
+(click)="cancel()">
+
+
+
+<i class="ti ti-arrow-left"></i>
+
+Retour
+
+
+</button>
+
+
+
+
+
+<button
+class="btn btn-primary"
+[disabled]="loading">
+
+
+
+<i class="ti ti-device-floppy"></i>
+
+
+Enregistrer
+
+
+</button>
+
+
+</div>
+
+
+
+
+</form>
+
+
+</div>
+
+
+</div>

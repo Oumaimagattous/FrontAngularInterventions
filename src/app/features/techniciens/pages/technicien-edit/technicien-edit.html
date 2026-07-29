@@ -1,0 +1,100 @@
+<div class="modal-header bg-warning text-dark">
+
+    <h4 class="mb-0">
+
+        Modifier Technicien
+
+    </h4>
+
+    <button
+        class="btn-close"
+        (click)="close()">
+    </button>
+
+</div>
+
+<div class="modal-body">
+
+    <div class="mb-3">
+
+        <label class="form-label">
+
+            Nom
+
+        </label>
+
+        <input
+            class="form-control"
+            [(ngModel)]="model.nom">
+
+    </div>
+
+    <div class="mb-3">
+
+        <label class="form-label">
+
+            Prénom
+
+        </label>
+
+        <input
+            class="form-control"
+            [(ngModel)]="model.prenom">
+
+    </div>
+
+    <div class="mb-3">
+
+        <label class="form-label">
+
+            Email
+
+        </label>
+
+        <input
+            class="form-control"
+            [(ngModel)]="model.email">
+
+    </div>
+
+    <div class="mb-3">
+
+        <label class="form-label">
+
+            Matricule
+
+        </label>
+
+        <input
+            class="form-control"
+            [(ngModel)]="model.matricule">
+
+    </div>
+
+</div>
+
+<div class="modal-footer">
+
+    <button
+        class="btn btn-secondary"
+        (click)="close()">
+
+        Annuler
+
+    </button>
+
+    <button
+        class="btn btn-warning"
+        (click)="update()"
+        [disabled]="loading">
+
+        <span
+            *ngIf="loading"
+            class="spinner-border spinner-border-sm me-2">
+        </span>
+
+        Modifier
+
+    </button>
+
+</div>

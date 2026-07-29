@@ -1,0 +1,340 @@
+.card {
+
+  border-radius: 15px;
+  border: none;
+  overflow: hidden;
+
+}
+
+
+
+.card-header {
+
+  padding: 18px 25px;
+
+}
+
+
+
+.card-body {
+
+  padding: 25px;
+
+}
+
+
+
+
+
+// Header principal
+
+.bg-blue-700 {
+
+  background: linear-gradient(
+    135deg,
+    #2563eb,
+    #1e40af
+  );
+
+}
+
+
+
+.bg-blue-100 {
+
+  background-color: #dbeafe !important;
+
+}
+
+
+
+.bg-blue-600 {
+
+  background-color: #2563eb !important;
+
+}
+
+
+
+.bg-blue-800 {
+
+  background-color: #1e3a8a !important;
+
+}
+
+
+
+
+
+// Purple
+
+.bg-purple-100 {
+
+  background-color: #f3e8ff !important;
+
+}
+
+
+
+.bg-purple-500 {
+
+  background-color: #9333ea !important;
+
+}
+
+
+
+.bg-purple-700 {
+
+  background-color: #6b21a8 !important;
+
+}
+
+
+
+
+
+// Text colors
+
+.text-blue-700 {
+
+  color: #1d4ed8 !important;
+
+}
+
+
+
+.text-blue-800 {
+
+  color: #1e3a8a !important;
+
+}
+
+
+
+.text-purple-700 {
+
+  color: #7e22ce !important;
+
+}
+
+
+
+
+
+// Informations client
+
+label {
+
+  font-size: 13px;
+
+  font-weight: 600;
+
+  color: #64748b;
+
+}
+
+
+
+h5 {
+
+  font-weight: 600;
+
+}
+
+
+
+
+
+// Bouton retour
+
+.btn {
+
+  border-radius: 8px;
+
+  transition: all .3s ease;
+
+}
+
+
+
+.btn:hover {
+
+  transform: translateY(-2px);
+
+}
+
+
+
+
+
+// Table interventions
+
+.table {
+
+
+  border-radius: 10px;
+
+  overflow: hidden;
+
+
+  th {
+
+
+    font-weight: 600;
+
+    color: #1e3a8a;
+
+    padding: 15px;
+
+
+  }
+
+
+
+  td {
+
+
+    padding: 14px;
+
+    vertical-align: middle;
+
+
+  }
+
+
+}
+
+
+
+
+
+.table tbody tr {
+
+
+  transition: .2s;
+
+
+}
+
+
+
+.table tbody tr:hover {
+
+
+  background-color: #eff6ff;
+
+
+}
+
+
+
+
+
+// Badge statut
+
+.badge {
+
+
+  padding: 8px 14px;
+
+  border-radius: 20px;
+
+  font-size: 12px;
+
+  font-weight: 600;
+
+
+}
+
+
+
+.bg-green-500 {
+
+
+  background-color: #22c55e !important;
+
+  color: white;
+
+
+}
+
+
+
+
+
+// Liste techniciens/prestations
+
+ul {
+
+
+  padding-left: 18px;
+
+
+}
+
+
+
+li {
+
+
+  margin-bottom: 5px;
+
+
+}
+
+
+
+
+
+// Cards sites
+
+.card.mb-4 {
+
+
+  box-shadow:
+  0 5px 20px rgba(0,0,0,0.08);
+
+
+}
+
+
+
+
+
+// Animation chargement
+
+.spinner-border {
+
+
+  width: 3rem;
+
+  height: 3rem;
+
+
+}
+
+
+
+
+
+// Responsive
+
+@media(max-width:768px){
+
+
+  .card-body {
+
+    padding:15px;
+
+  }
+
+
+  table {
+
+    font-size:13px;
+
+  }
+
+
+}

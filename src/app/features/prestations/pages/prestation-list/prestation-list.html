@@ -1,0 +1,257 @@
+<div class="card">
+
+
+<div class="card-header bg-blue-600 text-white d-flex justify-content-between align-items-center">
+
+
+<div>
+
+<h4 class="mb-0">
+
+Liste des prestations
+
+</h4>
+
+
+<small>
+
+Gestion du catalogue des prestations
+
+</small>
+
+
+</div>
+
+
+
+<button
+
+class="btn btn-light"
+
+(click)="openCreate()">
+
+
+<i class="ti ti-plus"></i>
+
+Ajouter prestation
+
+
+</button>
+
+
+
+</div>
+
+
+
+
+
+<div class="card-body">
+
+
+
+<div class="table-responsive">
+
+
+
+<table
+
+class="table table-hover align-middle"
+
+*ngIf="prestations.length > 0">
+
+
+
+<thead class="table-primary">
+
+
+<tr>
+
+
+<th>
+Code ERP
+</th>
+
+
+<th>
+Désignation
+</th>
+
+
+<th>
+Prix
+</th>
+
+
+<th>
+Nombre utilisations
+</th>
+
+
+<th class="text-center">
+Actions
+</th>
+
+
+</tr>
+
+
+</thead>
+
+
+
+
+
+<tbody>
+
+
+
+<tr
+
+*ngFor="let prestation of prestations">
+
+
+
+<td>
+
+
+<strong>
+
+{{prestation.codeERP}}
+
+</strong>
+
+
+</td>
+
+
+
+<td>
+
+{{prestation.designation}}
+
+</td>
+
+
+
+
+<td>
+
+
+{{prestation.prix}} TND
+
+
+</td>
+
+
+
+
+<td>
+
+
+<span class="badge bg-blue-600">
+
+
+{{prestation.nombreUtilisations}}
+
+
+</span>
+
+
+</td>
+
+
+
+
+<td class="text-center">
+
+
+
+<button
+
+class="btn btn-warning btn-sm me-2"
+
+(click)="openEdit(prestation)">
+
+
+
+<i class="ti ti-edit"></i>
+
+Modifier
+
+
+</button>
+
+
+
+
+
+
+<button
+
+class="btn btn-danger btn-sm"
+
+(click)="delete(prestation.id)">
+
+
+
+<i class="ti ti-trash"></i>
+
+Supprimer
+
+
+</button>
+
+
+
+
+</td>
+
+
+
+</tr>
+
+
+
+</tbody>
+
+
+
+</table>
+
+
+
+
+
+<div
+
+*ngIf="prestations.length===0"
+
+class="text-center py-5">
+
+
+<h5>
+
+Aucune prestation trouvée
+
+</h5>
+
+
+<p class="text-muted">
+
+Cliquez sur Ajouter prestation pour commencer.
+
+</p>
+
+
+</div>
+
+
+
+</div>
+
+
+</div>
+
+
+</div>

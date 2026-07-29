@@ -1,0 +1,366 @@
+.card {
+
+  border: none;
+  border-radius: 15px;
+  overflow: hidden;
+
+  box-shadow:
+  0 5px 20px rgba(0,0,0,0.08);
+
+}
+
+
+
+/* HEADER */
+
+.card-header {
+
+  padding: 20px 25px;
+
+  background: linear-gradient(
+    135deg,
+    #2563eb,
+    #7e22ce
+  );
+
+  color: white;
+
+}
+
+
+
+.card-header h4 {
+
+  font-weight: 700;
+
+}
+
+
+
+.card-header small {
+
+  color: #e0e7ff !important;
+
+}
+
+
+
+
+
+/* BUTTON AJOUT */
+
+.btn-primary {
+
+
+  background-color: #2563eb;
+
+  border: none;
+
+  border-radius: 8px;
+
+  padding: 10px 18px;
+
+  font-weight: 600;
+
+
+  transition: .3s;
+
+
+}
+
+
+
+.btn-primary:hover {
+
+
+  background-color: #1d4ed8;
+
+  transform:
+  translateY(-2px);
+
+
+}
+
+
+
+
+
+/* BODY */
+
+
+.card-body {
+
+  padding: 25px;
+
+}
+
+
+
+
+
+/* TABLE */
+
+
+.table {
+
+
+  border-collapse: separate;
+
+  border-spacing: 0;
+
+  overflow: hidden;
+
+
+}
+
+
+
+.table thead th {
+
+
+  background-color: #dbeafe !important;
+
+  color: #1e3a8a;
+
+  font-weight: 700;
+
+  padding: 15px;
+
+  border: none;
+
+
+}
+
+
+
+
+
+.table tbody tr {
+
+
+  transition: .25s;
+
+
+}
+
+
+
+.table tbody tr:hover {
+
+
+  background-color: #eff6ff;
+
+  transform: scale(1.005);
+
+
+}
+
+
+
+
+
+.table td {
+
+
+  padding: 15px;
+
+  vertical-align: middle;
+
+  color: #334155;
+
+
+}
+
+
+
+
+
+/* NOM CLIENT */
+
+
+.table td strong {
+
+
+  color: #2563eb;
+
+  font-size: 15px;
+
+
+}
+
+
+
+
+
+/* ACTION BUTTONS */
+
+
+.btn-sm {
+
+
+  border-radius: 8px;
+
+  padding: 7px 12px;
+
+  font-weight: 600;
+
+  transition: .3s;
+
+
+}
+
+
+
+.btn-info {
+
+
+  background-color: #0ea5e9;
+
+  border:none;
+
+  color:white;
+
+
+}
+
+
+
+.btn-info:hover {
+
+
+  background-color:#0284c7;
+
+
+}
+
+
+
+
+.btn-warning {
+
+
+  background-color:#f59e0b;
+
+  border:none;
+
+  color:white;
+
+
+}
+
+
+
+.btn-warning:hover {
+
+
+  background-color:#d97706;
+
+
+}
+
+
+
+
+
+.btn-danger {
+
+
+  background-color:#ef4444;
+
+  border:none;
+
+
+}
+
+
+
+.btn-danger:hover {
+
+
+  background-color:#dc2626;
+
+
+}
+
+
+
+
+
+/* EMPTY */
+
+
+.text-center img {
+
+
+  opacity:.7;
+
+
+}
+
+
+
+.text-center h5 {
+
+
+  color:#1e3a8a;
+
+  font-weight:700;
+
+
+}
+
+
+
+
+
+/* RESPONSIVE */
+
+
+@media(max-width:992px){
+
+
+.table {
+
+
+ font-size:14px;
+
+
+}
+
+
+.btn-sm {
+
+
+ margin-bottom:5px;
+
+
+}
+
+
+}
+
+
+
+@media(max-width:768px){
+
+
+.card-body {
+
+
+ padding:15px;
+
+
+}
+
+
+
+.table-responsive {
+
+
+ overflow-x:auto;
+
+
+}
+
+
+}

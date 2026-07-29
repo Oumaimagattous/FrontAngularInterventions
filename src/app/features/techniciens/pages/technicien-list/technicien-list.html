@@ -1,0 +1,175 @@
+<div class="card">
+
+  <div class="card-header d-flex justify-content-between align-items-center">
+
+    <div>
+
+      <h4 class="mb-0">
+        Liste des techniciens
+      </h4>
+
+      <small class="text-muted">
+        Gestion des techniciens
+      </small>
+
+    </div>
+
+    <button
+      class="btn btn-primary"
+      (click)="openCreate()">
+
+      <i class="ti ti-plus"></i>
+
+      Ajouter Technicien
+
+    </button>
+
+  </div>
+
+
+
+  <div class="card-body">
+
+    <div class="table-responsive">
+
+      <table
+        class="table table-hover table-striped align-middle"
+        *ngIf="techniciens.length > 0">
+
+        <thead class="table-primary">
+
+          <tr>
+
+            <th>Nom</th>
+
+            <th>Prénom</th>
+
+            <th>Email</th>
+
+            <th>Matricule</th>
+
+            <th>Interventions</th>
+
+            <th class="text-center">
+
+              Actions
+
+            </th>
+
+          </tr>
+
+        </thead>
+
+        <tbody>
+
+          <tr
+            *ngFor="let technicien of techniciens">
+
+            <td>
+
+              <strong>
+
+                {{technicien.nom}}
+
+              </strong>
+
+            </td>
+
+            <td>
+
+              {{technicien.prenom}}
+
+            </td>
+
+            <td>
+
+              {{technicien.email}}
+
+            </td>
+
+         
+
+            <td>
+
+              {{technicien.matricule}}
+
+            </td>
+
+            <td>
+
+              <span class="badge bg-primary">
+
+                {{technicien.nombreInterventions}}
+
+              </span>
+
+            </td>
+
+            <td class="text-center">
+
+              <button
+                class="btn btn-info btn-sm me-2"
+                (click)="openDetails(technicien)">
+
+                <i class="ti ti-eye"></i>
+
+                Détails
+
+              </button>
+
+              <button
+                class="btn btn-warning btn-sm me-2"
+                (click)="openEdit(technicien)">
+
+                <i class="ti ti-edit"></i>
+
+                Modifier
+
+              </button>
+
+              <button
+                class="btn btn-danger btn-sm"
+                (click)="delete(technicien.id)">
+
+                <i class="ti ti-trash"></i>
+
+                Supprimer
+
+              </button>
+
+            </td>
+
+          </tr>
+
+        </tbody>
+
+      </table>
+
+      <div
+        *ngIf="techniciens.length === 0"
+        class="text-center py-5">
+
+        <img
+          src="assets/images/empty.svg"
+          width="150"
+          class="mb-3">
+
+        <h5>
+
+          Aucun technicien trouvé
+
+        </h5>
+
+        <p class="text-muted">
+
+          Cliquez sur <b>Ajouter Technicien</b> pour créer votre premier technicien.
+
+        </p>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>

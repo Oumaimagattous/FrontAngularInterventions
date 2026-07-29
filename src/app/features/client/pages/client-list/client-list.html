@@ -1,0 +1,164 @@
+<div class="card">
+
+  <div class="card-header d-flex justify-content-between align-items-center">
+
+    <div>
+
+      <h4 class="mb-0">
+        Liste des clients
+      </h4>
+
+      <small class="text-muted">
+        Gestion des clients
+      </small>
+
+    </div>
+
+    <button
+      class="btn btn-primary"
+      (click)="openCreate()">
+
+      <i class="ti ti-plus"></i>
+      Ajouter Client
+
+    </button>
+
+  </div>
+
+
+  <div class="card-body">
+
+    <div class="table-responsive">
+
+      <table
+        class="table table-hover table-striped align-middle"
+        *ngIf="clients.length > 0">
+
+        <thead class="table-primary">
+
+          <tr>
+
+            <th>Nom</th>
+
+            <th>Raison Sociale</th>
+
+            <th>Adresse</th>
+
+  
+
+            <th>Email</th>
+
+           
+
+            <th class="text-center">
+              Actions
+            </th>
+
+          </tr>
+
+        </thead>
+
+
+        <tbody>
+
+          <tr *ngFor="let client of clients">
+
+            <td>
+
+              <strong>
+
+                {{ client.nom }}
+
+              </strong>
+
+            </td>
+
+            <td>
+
+              {{ client.raisonSociale }}
+
+            </td>
+
+            <td>
+
+              {{ client.adresse }}
+
+            </td>
+
+           
+
+            <td>
+
+              {{ client.email }}
+
+            </td>
+
+           
+
+            <td class="text-center">
+
+              <button
+ class="btn btn-info btn-sm me-2"
+ (click)="openDetails(client)">
+
+<i class="ti ti-eye"></i>
+
+Détails
+
+</button>
+
+              <button
+                class="btn btn-warning btn-sm me-2"
+                (click)="openEdit(client)">
+
+                <i class="ti ti-edit"></i>
+
+                Modifier
+
+              </button>
+
+              <button
+                class="btn btn-danger btn-sm"
+                (click)="delete(client.id)">
+
+                <i class="ti ti-trash"></i>
+
+                Supprimer
+
+              </button>
+
+            </td>
+
+          </tr>
+
+        </tbody>
+
+      </table>
+
+
+      <div
+        *ngIf="clients.length === 0"
+        class="text-center py-5">
+
+        <img
+          src="assets/images/empty.svg"
+          width="150"
+          class="mb-3">
+
+        <h5>
+          Aucun client trouvé
+        </h5>
+
+        <p class="text-muted">
+
+          Cliquez sur <b>Ajouter Client</b> pour créer votre premier client.
+
+        </p>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>

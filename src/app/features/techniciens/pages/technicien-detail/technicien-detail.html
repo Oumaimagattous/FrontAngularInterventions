@@ -1,0 +1,177 @@
+<div class="card">
+
+    <div class="card-header bg-blue-600 text-white d-flex justify-content-between align-items-center">
+
+        <h3 class="mb-0">
+
+            Détails Technicien
+
+        </h3>
+
+        <button
+            class="btn btn-light"
+            (click)="goBack()">
+
+            <i class="ti ti-arrow-left"></i>
+
+            Retour
+
+        </button>
+
+    </div>
+
+    <div
+        class="card-body text-center"
+        *ngIf="loading">
+
+        <div class="spinner-border text-primary"></div>
+
+        <p class="mt-3">
+
+            Chargement...
+
+        </p>
+
+    </div>
+
+    <div
+        class="card-body"
+        *ngIf="!loading && technicien">
+
+        <div class="row">
+
+            <div class="col-md-3">
+
+                <div class="text-center">
+
+                    <div
+                        class="rounded-circle bg-blue-600 text-white d-inline-flex align-items-center justify-content-center"
+                        style="width:90px;height:90px;font-size:30px;">
+
+                        {{technicien.prenom[0]}}{{technicien.nom[0]}}
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="col-md-9">
+
+                <h3>
+
+                    {{technicien.prenom}} {{technicien.nom}}
+
+                </h3>
+
+                <hr>
+
+                <div class="row">
+
+                    <div class="col-md-6">
+
+                        <p>
+
+                            <strong>Email :</strong>
+
+                            {{technicien.email}}
+
+                        </p>
+
+                        <p>
+
+                            <strong>Matricule :</strong>
+
+                            {{technicien.matricule}}
+
+                        </p>
+
+                    </div>
+
+                    <div class="col-md-6">
+
+                        <p>
+
+                            <strong>Nombre interventions :</strong>
+
+                            {{technicien.nombreInterventions}}
+
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <hr class="my-4">
+
+        <h4 class="mb-3">
+
+            Historique des interventions
+
+        </h4>
+
+        <div class="table-responsive">
+
+            <table class="table table-hover align-middle">
+
+                <thead class="table-primary">
+
+                    <tr>
+
+                       
+
+                        <th>Date</th>
+
+                        <th>Site</th>
+
+                        <th>Statut</th>
+
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                    <tr
+                        *ngFor="let item of interventions">
+
+                       
+
+                        <td>
+
+                            {{item.date | date:'dd/MM/yyyy HH:mm'}}
+
+                        </td>
+
+                        <td>
+
+                            {{item.site}}
+
+                        </td>
+
+                        <td>
+
+                            <span
+                                class="badge bg-success">
+
+                                {{item.statut}}
+
+                            </span>
+
+                        </td>
+
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+
+</div>

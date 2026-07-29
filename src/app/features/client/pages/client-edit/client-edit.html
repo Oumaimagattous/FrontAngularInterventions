@@ -1,0 +1,262 @@
+<div class="modal-header">
+
+<h4 class="modal-title">
+Modifier Client
+</h4>
+
+</div>
+
+
+
+<div class="modal-body">
+
+
+<form 
+[formGroup]="clientForm"
+novalidate>
+
+
+<div class="row">
+
+
+
+<div class="col-md-6">
+
+<div class="mb-3">
+
+<label class="form-label">
+Matricule Fiscal
+</label>
+
+
+<input
+class="form-control"
+type="text"
+formControlName="matricule">
+
+
+<div 
+class="text-danger"
+*ngIf="
+clientForm.get('matricule')?.touched &&
+clientForm.get('matricule')?.invalid
+">
+
+Matricule obligatoire
+
+</div>
+
+
+</div>
+
+</div>
+
+
+
+
+
+<div class="col-md-6">
+
+<div class="mb-3">
+
+
+<label class="form-label">
+Raison Sociale
+</label>
+
+
+<input
+class="form-control"
+type="text"
+formControlName="raisonSociale">
+
+
+
+<div 
+class="text-danger"
+*ngIf="
+clientForm.get('raisonSociale')?.touched &&
+clientForm.get('raisonSociale')?.invalid
+">
+
+Raison Sociale obligatoire
+
+</div>
+
+
+</div>
+
+</div>
+
+
+
+
+
+
+
+<div class="col-md-6">
+
+<div class="mb-3">
+
+
+<label class="form-label">
+Adresse
+</label>
+
+
+<input
+class="form-control"
+type="text"
+formControlName="adresse">
+
+
+</div>
+
+</div>
+
+
+
+
+
+
+
+<div class="col-md-6">
+
+<div class="mb-3">
+
+
+<label class="form-label">
+Nom
+</label>
+
+
+<input
+class="form-control"
+type="text"
+formControlName="nom">
+
+
+
+<div 
+class="text-danger"
+*ngIf="
+clientForm.get('nom')?.touched &&
+clientForm.get('nom')?.invalid
+">
+
+Nom obligatoire
+
+</div>
+
+
+</div>
+
+</div>
+
+
+
+
+
+
+
+<div class="col-md-6">
+
+<div class="mb-3">
+
+
+<label class="form-label">
+Email
+</label>
+
+
+<input
+class="form-control"
+type="email"
+formControlName="email">
+
+
+
+<div 
+class="text-danger"
+*ngIf="
+clientForm.get('email')?.touched &&
+clientForm.get('email')?.invalid
+">
+
+Email invalide
+
+</div>
+
+
+</div>
+
+</div>
+
+
+
+
+
+
+
+<div class="col-md-6">
+
+<div class="mb-3">
+
+
+<label class="form-label">
+Téléphone
+</label>
+
+
+<input
+class="form-control"
+type="text"
+formControlName="telephone">
+
+
+</div>
+
+</div>
+
+
+
+</div>
+
+
+</form>
+
+
+</div>
+
+
+
+
+
+
+<div class="modal-footer">
+
+
+<button
+class="btn btn-secondary"
+type="button"
+(click)="close()">
+
+Annuler
+
+</button>
+
+
+
+
+<button
+class="btn btn-primary"
+type="button"
+(click)="save()"
+[disabled]="clientForm.invalid">
+
+Modifier
+
+</button>
+
+
+</div>
