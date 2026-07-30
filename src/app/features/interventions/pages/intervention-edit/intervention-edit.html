@@ -1,0 +1,112 @@
+<div class="container-fluid">
+  <div class="card shadow-sm">
+    <div class="card-header bg-blue-700 text-white">
+      <h4>Modifier une intervention</h4>
+    </div>
+
+    <div class="card-body">
+      <form (ngSubmit)="onSubmit($event)">
+        <!-- DATE PLANIFIEE -->
+
+        <div class="mb-3">
+          <label class="form-label">Date planifiée</label>
+
+          <input
+            type="date"
+            class="form-control"
+            [value]="interventionModel().datePlanifiee | date:'yyyy-MM-dd'"
+            (change)="interventionModel.update(i => ({
+              ...i,
+              datePlanifiee: $any($event.target).valueAsDate
+            }))"
+          />
+
+          @if(submitted() && interventionForm.datePlanifiee().invalid()){
+
+          <div class="text-danger mt-1">
+            @for(error of interventionForm.datePlanifiee().errors(); track error.kind){
+
+            <div>{{error.message}}</div>
+
+            }
+          </div>
+
+          }
+        </div>
+
+        <!-- SITE -->
+
+        <div class="mb-3">
+          <label class="form-label">Site</label>
+
+          <select
+            class="form-select"
+            [value]="interventionModel().siteId"
+            (change)="interventionModel.update(i => ({
+              ...i,
+              siteId: +$any($event.target).value
+            }))"
+          >
+            <option [value]="0">Choisir un site</option>
+
+            @for(site of sites(); track site.id){
+
+            <option [value]="site.id" [selected]="site.id === interventionModel().siteId">{{site.codeSite}} - {{site.clientNom}}</option>
+
+            }
+          </select>
+        </div>
+
+        <!-- AJOUT TECHNICIEN -->
+
+        <div class="mb-3">
+          <label class="form-label">Ajouter un technicien</label>
+
+          <select class="form-select" (change)="ajouterTechnicien(+$any($event.target).value); $any($event.target).selectedIndex = 0">
+            <option value="">Sélectionner...</option>
+
+            @for(tech of techniciens(); track tech.id){
+
+            <option [value]="tech.id" [disabled]="interventionModel().techniciensIds.includes(tech.id)">
+              {{tech.nom}} {{tech.prenom}}
+            </option>
+
+            }
+          </select>
+        </div>
+
+        <!-- LISTE DES TECHNICIENS -->
+
+        @if(interventionModel().techniciensIds.length){
+
+        <div class="mb-4">
+          <label class="form-label">Techniciens sélectionnés</label>
+
+          <div class="d-flex flex-wrap gap-2">
+            @for(id of interventionModel().techniciensIds; track id){
+
+            <span class="badge bg-primary fs-6">
+              {{getNomTechnicien(id)}}
+
+              <button type="button" class="btn-close btn-close-white ms-2" (click)="supprimerTechnicien(id)"></button>
+            </span>
+
+            }
+          </div>
+        </div>
+
+        } @if(error()){
+
+        <div class="alert alert-danger">{{error()}}</div>
+
+        }
+
+        <div class="d-grid">
+          <button type="submit" class="btn btn-secondary" [disabled]="loading()">
+            @if(loading()){ Modification... } @else { Modifier l'intervention }
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

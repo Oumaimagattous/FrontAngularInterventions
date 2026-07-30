@@ -1,0 +1,101 @@
+<div class="container-fluid">
+  <div class="card shadow-sm">
+    <div class="card-header bg-blue-700 text-white">
+      <h4>Modifier un équipement</h4>
+    </div>
+
+    <div class="card-body">
+      <form (ngSubmit)="onSubmit($event)">
+        <!-- CODE -->
+
+        <div class="form-floating mb-3">
+          <input
+            type="text"
+            class="form-control"
+            placeholder="Code"
+            [formField]="equipementForm.code"
+            [class.is-invalid]="submitted() && equipementForm.code().invalid()"
+          />
+
+          <label>Code équipement</label>
+
+          @if(submitted() && equipementForm.code().invalid()){
+
+          <div class="invalid-feedback">
+            @for(error of equipementForm.code().errors(); track error.kind){
+
+            <div>{{error.message}}</div>
+
+            }
+          </div>
+
+          }
+        </div>
+
+        <!-- DESIGNATION -->
+
+        <div class="form-floating mb-3">
+          <input
+            type="text"
+            class="form-control"
+            placeholder="Désignation"
+            [formField]="equipementForm.designation"
+            [class.is-invalid]="submitted() && equipementForm.designation().invalid()"
+          />
+
+          <label>Désignation</label>
+
+          @if(submitted() && equipementForm.designation().invalid()){
+
+          <div class="invalid-feedback">
+            @for(error of equipementForm.designation().errors(); track error.kind){
+
+            <div>{{error.message}}</div>
+
+            }
+          </div>
+
+          }
+        </div>
+
+        <!-- STOCK -->
+
+        <div class="form-floating mb-3">
+          <input
+            type="number"
+            class="form-control"
+            placeholder="Stock"
+            [formField]="equipementForm.quantiteStock"
+            [class.is-invalid]="submitted() && equipementForm.quantiteStock().invalid()"
+          />
+
+          <label>Quantité en stock</label>
+
+          @if(submitted() && equipementForm.quantiteStock().invalid()){
+
+          <div class="invalid-feedback">
+            @for(error of equipementForm.quantiteStock().errors(); track error.kind){
+
+            <div>{{error.message}}</div>
+
+            }
+          </div>
+
+          }
+        </div>
+
+        @if(error()){
+
+        <div class="alert alert-danger">{{error()}}</div>
+
+        }
+
+        <div class="d-grid mt-4">
+          <button type="submit" class="btn btn-secondary" [disabled]="loading()">
+            @if(loading()){ Modification... } @else { Modifier Equipement }
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

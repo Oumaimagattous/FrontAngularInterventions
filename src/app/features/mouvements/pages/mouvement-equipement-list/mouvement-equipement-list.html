@@ -1,0 +1,57 @@
+<div class="container-fluid">
+  <div class="card shadow-sm">
+    <div class="card-header bg-blue-700 text-white">
+      <h4>Mouvements équipements</h4>
+    </div>
+
+    <div class="card-body">
+      <table class="table table-hover">
+        <thead class="bg-blue-100">
+          <tr>
+            <th>Equipement</th>
+
+            <th>Type</th>
+
+            <th>Quantité</th>
+
+            <th>Date</th>
+
+            <th>Observation</th>
+
+            <th>Intervention</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          @for(m of mouvements(); track m.id){
+
+          <tr>
+            <td>{{m.equipement}}</td>
+
+            <td>
+              @if(m.typeMouvement === 1){
+
+              <span class="badge bg-danger">Sortie</span>
+
+              } @else{
+
+              <span class="badge bg-success">Entrée</span>
+
+              }
+            </td>
+
+            <td>{{m.quantite}}</td>
+
+            <td>{{m.dateMouvement | date:'dd/MM/yyyy HH:mm'}}</td>
+
+            <td>{{m.observation || '-'}}</td>
+
+            <td>@if(m.interventionId){ INT-{{m.interventionId}} } @else{ Stock }</td>
+          </tr>
+
+          }
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

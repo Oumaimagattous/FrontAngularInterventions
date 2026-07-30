@@ -1,0 +1,47 @@
+<div class="container-fluid">
+  @if(error()){
+
+  <div class="alert alert-danger">{{error()}}</div>
+
+  } @if(equipement()){
+
+  <div class="card shadow-sm">
+    <div class="card-header bg-blue-700 text-white">
+      <h4>Détails de l'équipement</h4>
+    </div>
+
+    <div class="card-body">
+      <div class="row">
+        <div class="col-md-6 mb-3">
+          <strong>Code :</strong>
+
+          {{equipement()?.code}}
+        </div>
+
+        <div class="col-md-6 mb-3">
+          <strong>Désignation :</strong>
+
+          {{equipement()?.designation}}
+        </div>
+
+        <div class="col-md-6 mb-3">
+          <strong>Quantité en stock :</strong>
+
+          <span class="badge bg-success">{{equipement()?.quantiteStock}}</span>
+        </div>
+
+        <div class="col-md-6 mb-3">
+          <strong>Nombre de mouvements :</strong>
+
+          <span class="badge bg-primary">{{equipement()?.nombreMouvements}}</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="card-footer text-end">
+      <a routerLink="/equipements" class="btn btn-secondary">Retour</a>
+    </div>
+  </div>
+
+  }
+</div>

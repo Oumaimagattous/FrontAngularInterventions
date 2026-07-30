@@ -1,0 +1,106 @@
+<div class="container-fluid">
+  <div class="card shadow-sm">
+    <div class="card-header bg-blue-700 text-white">
+      <h4>Modifier un site</h4>
+    </div>
+
+    <div class="card-body">
+      <form (ngSubmit)="onSubmit($event)">
+        <!-- CODE SITE -->
+
+        <div class="form-floating mb-3">
+          <input
+            type="text"
+            class="form-control"
+            placeholder="Code Site"
+            [formField]="siteForm.codeSite"
+            [class.is-invalid]="
+              submitted() &&
+              siteForm.codeSite().invalid()
+            "
+          />
+
+          <label>Code Site</label>
+
+          @if(submitted() && siteForm.codeSite().invalid()){
+
+          <div class="invalid-feedback">
+            @for(error of siteForm.codeSite().errors(); track error.kind){
+
+            <div>{{error.message}}</div>
+
+            }
+          </div>
+
+          }
+        </div>
+
+        <!-- ADRESSE -->
+
+        <div class="form-floating mb-3">
+          <input
+            type="text"
+            class="form-control"
+            placeholder="Adresse"
+            [formField]="siteForm.adresse"
+            [class.is-invalid]="
+              submitted() &&
+              siteForm.adresse().invalid()
+            "
+          />
+
+          <label>Adresse</label>
+
+          @if(submitted() && siteForm.adresse().invalid()){
+
+          <div class="invalid-feedback">
+            @for(error of siteForm.adresse().errors(); track error.kind){
+
+            <div>{{error.message}}</div>
+
+            }
+          </div>
+
+          }
+        </div>
+
+        <!-- CLIENT -->
+
+        <div class="mb-3">
+          <label class="form-label">Client</label>
+
+          <select
+            class="form-select"
+            [value]="siteModal().clientId"
+            (change)="siteModal.update(s => ({
+              ...s,
+              clientId: +$any($event.target).value
+            }))"
+          >
+            <option [value]="0">Choisir un client</option>
+
+            @for(client of clients(); track client.id){
+
+            <option [value]="client.id"
+            [selected]="client.id === siteModal().clientId">
+            {{client.raisonSociale}}</option>
+
+            }
+          </select>
+        </div>
+
+        @if(error()){
+
+        <div class="alert alert-danger">{{error()}}</div>
+
+        }
+
+        <div class="d-grid mt-4">
+          <button type="submit" class="btn btn-secondary" [disabled]="loading()">
+            @if(loading()){ Modification... } @else{ Modifier Site }
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

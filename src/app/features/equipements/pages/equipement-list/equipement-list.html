@@ -1,0 +1,56 @@
+<div class="container-fluid">
+  <div class="card shadow-sm">
+    <div class="card-header bg-blue-700 text-white d-flex justify-content-between align-items-center">
+      <h4 class="mb-0">Gestion des équipements</h4>
+
+      <a routerLink="/equipements/create" class="btn bg-purple-600 text-white">+ Ajouter Equipement</a>
+    </div>
+
+    <div class="card-body">
+      <div class="table-responsive">
+        <table class="table table-hover align-middle">
+          <thead class="bg-blue-100">
+            <tr>
+              <th>Code</th>
+
+              <th>Désignation</th>
+
+              <th>Quantité Stock</th>
+
+              <th>Mouvements</th>
+
+              <th class="text-center">Actions</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            @for(equipement of equipements(); track equipement.id){
+
+            <tr>
+              <td class="fw-semibold">{{equipement.code}}</td>
+
+              <td>{{equipement.designation}}</td>
+
+              <td>{{equipement.quantiteStock}}</td>
+
+              <td>
+                <span class="badge bg-blue-500 text-white">{{equipement.nombreMouvements}}</span>
+              </td>
+
+              <td class="text-center">
+                <a class="btn btn-sm bg-blue-300 text-white me-2" [routerLink]="['/equipements/detail',equipement.id]">Détails</a>
+
+                <a class="btn btn-sm bg-blue-500 text-white me-2" [routerLink]="['/equipements/edit',equipement.id]">Modifier</a>
+
+                <button class="btn btn-sm bg-purple-600 text-white" (click)="delete(equipement.id)">Supprimer</button>
+                
+              </td>
+            </tr>
+
+            }
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

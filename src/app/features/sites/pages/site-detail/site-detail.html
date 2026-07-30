@@ -1,0 +1,97 @@
+<div class="container-fluid">
+  @if(error()){
+
+  <div class="alert alert-danger">{{error()}}</div>
+
+  } @if(site()){
+
+  <!-- INFORMATIONS SITE -->
+
+  <div class="card shadow-sm mb-4">
+    <div class="card-header bg-blue-700 text-white">
+      <h4>Détails du site</h4>
+    </div>
+
+    <div class="card-body">
+      <div class="row">
+        <div class="col-md-6 mb-3">
+          <strong>Code Site :</strong>
+
+          {{site()?.codeSite}}
+        </div>
+
+        <div class="col-md-6 mb-3">
+          <strong>Client :</strong>
+
+          {{site()?.clientNom}}
+        </div>
+
+        <div class="col-md-12">
+          <strong>Adresse :</strong>
+
+          {{site()?.adresse}}
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- INTERVENTIONS -->
+
+  <div class="card shadow-sm">
+    <div class="card-header bg-purple-600 text-white">
+      <h4>Interventions</h4>
+    </div>
+
+    <div class="card-body">
+      @if(site()?.interventions?.length){
+
+      <div class="table-responsive">
+        <table class="table table-hover">
+          <thead class="bg-blue-100">
+            <tr>
+              <th>Numéro</th>
+
+              <th>Date planifiée</th>
+
+              <th>Statut</th>
+
+              <th>Techniciens</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            @for(intervention of site()?.interventions; track intervention.id){
+
+            <tr>
+              <td>{{intervention.numero}}</td>
+
+              <td>{{intervention.datePlanifiee | date:'dd/MM/yyyy'}}</td>
+
+              <td>
+                <span class="badge bg-blue-500 text-white">{{intervention.statut}}</span>
+              </td>
+
+              <td>
+                @for(tech of intervention.techniciens; track tech){
+
+                <div>{{tech}}</div>
+
+                }
+              </td>
+            </tr>
+
+            }
+          </tbody>
+        </table>
+      </div>
+
+      } @else{
+
+      <div class="text-muted">Aucune intervention pour ce site</div>
+
+      }
+    </div>
+  </div>
+
+  }
+</div>

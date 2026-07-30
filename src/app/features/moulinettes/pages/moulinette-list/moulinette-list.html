@@ -1,0 +1,358 @@
+<div class="card">
+
+  <!-- HEADER -->
+  <div class="card-header bg-blue-600 text-white d-flex justify-content-between align-items-center">
+
+    <div>
+
+      <h3 class="mb-0">
+        <i class="ti ti-file-invoice me-2"></i>
+        Liste des Moulinettes
+      </h3>
+
+      <small>
+        Gestion des moulinettes générées
+      </small>
+
+    </div>
+
+
+    <a
+      routerLink="/moulinettes/create"
+      class="btn btn-success">
+
+      <i class="ti ti-plus me-1"></i>
+
+      Générer une moulinette
+
+    </a>
+
+
+  </div>
+
+
+
+  <!-- LOADING -->
+  <div
+    class="card-body text-center"
+    *ngIf="loading()">
+
+
+    <div class="spinner-border text-primary"></div>
+
+
+    <p class="mt-3">
+      Chargement des moulinettes...
+    </p>
+
+
+  </div>
+
+
+
+
+
+  <!-- TABLE -->
+  <div
+    class="card-body"
+    *ngIf="!loading()">
+
+
+
+    <div class="table-responsive">
+
+
+
+      <table class="table table-hover align-middle">
+
+
+
+        <thead class="table-primary">
+
+
+          <tr>
+
+
+            <th>
+              Client
+            </th>
+
+
+            <th>
+              Période
+            </th>
+
+
+            <th>
+              Date génération
+            </th>
+
+
+            <th>
+              Nombre interventions
+            </th>
+
+
+            <th>
+              Montant total
+            </th>
+
+
+            <th width="220">
+              Actions
+            </th>
+
+
+          </tr>
+
+
+        </thead>
+
+
+
+
+
+        <tbody>
+
+
+
+          <tr
+            *ngFor="let m of moulinettes()">
+
+
+
+            <!-- CLIENT -->
+            <td>
+
+
+              <strong>
+
+                {{ m.client }}
+
+              </strong>
+
+
+            </td>
+
+
+
+
+
+            <!-- PERIODE -->
+            <td>
+
+
+              {{ m.periodeDebut | date:'dd/MM/yyyy' }}
+
+              -
+
+              {{ m.periodeFin | date:'dd/MM/yyyy' }}
+
+
+            </td>
+
+
+
+
+
+
+            <!-- DATE GENERATION -->
+            <td>
+
+
+              {{ m.dateGeneration | date:'dd/MM/yyyy HH:mm' }}
+
+
+            </td>
+
+
+
+
+
+
+            <!-- INTERVENTIONS -->
+            <td>
+
+
+              <span class="badge bg-info">
+
+
+                {{ m.nombreInterventions }}
+
+
+              </span>
+
+
+            </td>
+
+
+
+
+
+
+
+            <!-- MONTANT -->
+            <td>
+
+
+              <strong>
+
+
+                {{ m.montantTotal | number:'1.3-3' }}
+
+                DT
+
+
+              </strong>
+
+
+            </td>
+
+
+
+
+
+
+
+
+            <!-- ACTIONS -->
+            <td>
+
+
+
+              <div class="d-flex gap-2">
+
+
+
+
+
+                <!-- DETAILS -->
+                <a
+                  class="btn btn-primary btn-sm"
+                  [routerLink]="['/moulinettes',m.id]">
+
+
+                  <i class="ti ti-eye"></i>
+
+
+                </a>
+
+
+
+
+
+
+
+                <!-- EXPORT EXCEL -->
+                <button
+                  class="btn btn-success btn-sm"
+                  title="Exporter Excel"
+                  (click)="exportExcel(m.id)">
+
+
+
+                  <i class="ti ti-file-export"></i>
+
+
+
+                </button>
+
+
+
+
+
+
+
+                <!-- DELETE -->
+                <button
+                  class="btn btn-danger btn-sm"
+                  title="Supprimer"
+                  (click)="delete(m.id)">
+
+
+
+                  <i class="ti ti-trash"></i>
+
+
+
+                </button>
+
+
+
+
+
+
+              </div>
+
+
+            </td>
+
+
+
+
+
+          </tr>
+
+
+
+
+
+
+
+
+          <!-- EMPTY -->
+          <tr
+            *ngIf="moulinettes().length === 0">
+
+
+
+            <td
+              colspan="6"
+              class="text-center text-muted">
+
+
+
+              <i class="ti ti-database-off fs-3"></i>
+
+
+              <p class="mt-2">
+
+                Aucune moulinette trouvée.
+
+              </p>
+
+
+
+            </td>
+
+
+
+          </tr>
+
+
+
+
+
+        </tbody>
+
+
+
+
+
+      </table>
+
+
+
+
+
+    </div>
+
+
+
+
+
+  </div>
+
+
+
+</div>

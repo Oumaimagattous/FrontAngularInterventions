@@ -70,7 +70,45 @@ const appRoutes: Routes = [
  )
 .then(m=>m.PRESTATION_ROUTES)
 
-}
+},
+{
+  path: 'equipements',
+  loadChildren: () =>
+    import('./features/equipements/equipement.routes')
+      .then(m => m.EQUIPEMENT_ROUTES)
+},
+  {
+  path: 'interventions',
+
+  loadChildren: () =>
+    import('./features/interventions/intervention.routes')
+      .then(m => m.INTERVENTION_ROUTES)
+
+},
+{
+  path: 'mouvements-equipements',
+
+  loadChildren: () =>
+    import('./features/mouvements/mouvement-equipement.routes')
+      .then(m => m.MOUVEMENT_EQUIPEMENT_ROUTES)
+
+},
+
+{
+  path: 'sites',
+
+  loadChildren: () =>
+    import('./features/sites/site.routes')
+      .then(m => m.SITE_ROUTES)
+
+},
+
+{
+    path: 'moulinettes',
+    loadChildren: () =>
+        import('./features/moulinettes/moulinette.routes')
+            .then(m => m.MOULINETTE_ROUTES)
+},
 
     ]
   },

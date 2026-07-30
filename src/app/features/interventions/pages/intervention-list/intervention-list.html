@@ -1,0 +1,60 @@
+<div class="container-fluid">
+  <div class="card shadow-sm">
+    <div class="card-header bg-blue-700 text-white d-flex justify-content-between align-items-center">
+      <h4 class="mb-0">Gestion des interventions</h4>
+
+      <a routerLink="/interventions/create" class="btn bg-purple-600 text-white">+ Ajouter Intervention</a>
+    </div>
+
+    <div class="card-body">
+      <div class="table-responsive">
+        <table class="table table-hover align-middle">
+          <thead class="bg-blue-100">
+            <tr>
+              <th>Numéro</th>
+
+              <th>Date planifiée</th>
+
+              <th>Statut</th>
+
+              <th>Techniciens</th>
+
+              <th>Photos</th>
+
+              <th class="text-center">Actions</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <tr *ngFor="let intervention of interventions()">
+              <td class="fw-semibold">{{ intervention.numero }}</td>
+
+              <td>{{ intervention.datePlanifiee | date:'dd/MM/yyyy' }}</td>
+
+              <td>
+                <span class="badge bg-blue-300 text-white">{{ intervention.statut }}</span>
+              </td>
+
+              <td>
+                <span *ngFor="let tech of intervention.techniciens">
+                  {{tech}}
+                  <br />
+                </span>
+              </td>
+
+              <td>{{ intervention.nombrePhotos }}</td>
+
+              <td class="text-center">
+                <a class="btn btn-sm bg-blue-300 text-white me-2" [routerLink]="['/interventions/detail', intervention.id]">Détails</a>
+
+                <a class="btn btn-sm bg-blue-500 text-white me-2" [routerLink]="['/interventions/edit', intervention.id]">Modifier</a>
+
+                <button class="btn btn-sm bg-purple-600 text-white" (click)="delete(intervention.id)">Supprimer</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

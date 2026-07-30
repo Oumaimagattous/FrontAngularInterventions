@@ -1,0 +1,128 @@
+<div class="container-fluid" *ngIf="intervention() as item">
+  <div class="card shadow-sm">
+    <div class="card-header bg-blue-700 text-white">
+      <h4 class="mb-0">Détails intervention</h4>
+    </div>
+
+    <div class="card-body">
+      <!-- Informations générales -->
+
+      <h5 class="text-primary">Informations générales</h5>
+
+      <hr />
+
+      <div class="row">
+        <div class="col-md-4">
+          <strong>Numéro :</strong>
+
+          <p>{{item.numero}}</p>
+        </div>
+
+        <div class="col-md-4">
+          <strong>Date planifiée :</strong>
+
+          <p>{{item.datePlanifiee | date:'dd/MM/yyyy'}}</p>
+        </div>
+
+        <div class="col-md-4">
+          <strong>Statut :</strong>
+
+          <p>
+            <span class="badge bg-blue-300 text-white">{{item.statut}}</span>
+          </p>
+        </div>
+      </div>
+
+      <!-- Actions validation -->
+
+      @if(item.statut === 'Soumise') {
+
+      <div class="mt-3 mb-3">
+        <button class="btn btn-success me-2" (click)="valider(true)">Valider</button>
+
+        <button class="btn btn-danger" (click)="valider(false)">Rejeter</button>
+      </div>
+
+      }
+
+      <div class="row">
+        <div class="col-md-4">
+          <strong>Date réalisation :</strong>
+
+          <p>{{item.dateRealisation ? (item.dateRealisation | date:'dd/MM/yyyy') : '-'}}</p>
+        </div>
+
+        <div class="col-md-8">
+          <strong>Commentaire :</strong>
+
+          <p>{{item.commentaire || '-'}}</p>
+        </div>
+      </div>
+
+      <hr />
+
+      <!-- Techniciens -->
+
+      <h5 class="text-primary">Techniciens</h5>
+
+      <div *ngIf="item.techniciens.length > 0">
+        <span *ngFor="let tech of item.techniciens" class="badge bg-blue-500 text-white me-2">{{tech}}</span>
+      </div>
+
+      <p *ngIf="item.techniciens.length === 0">Aucun technicien affecté</p>
+
+      <hr />
+
+      <!-- Prestations -->
+
+      <h5 class="text-primary">Prestations</h5>
+
+      <ul>
+        <li *ngFor="let prestation of item.prestations">{{prestation}}</li>
+      </ul>
+
+      <hr />
+
+      <!-- Equipements -->
+
+      <h5 class="text-primary">Équipements</h5>
+
+      <table class="table table-hover" *ngIf="item.equipements.length > 0">
+        <thead class="bg-blue-100">
+          <tr>
+            <th>Désignation</th>
+
+            <th>Quantité</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr *ngFor="let eq of item.equipements">
+            <td>{{eq.designation}}</td>
+
+            <td>{{eq.quantite}}</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <p *ngIf="item.equipements.length === 0">Aucun équipement</p>
+
+      <hr />
+
+      <!-- Photos -->
+
+      <h5 class="text-primary">Photos</h5>
+
+      <p>
+        Nombre de photos :
+        <strong>{{item.nombrePhotos}}</strong>
+      </p>
+
+      <div class="mt-4">
+        <button class="btn btn-primary me-2" (click)="genererFiche()">Générer fiche PDF</button>
+
+        <a routerLink="/interventions" class="btn btn-secondary">Retour</a>
+      </div>
+    </div>
+  </div>
+</div>

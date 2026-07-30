@@ -1,0 +1,61 @@
+<div class="container-fluid">
+  <div class="card shadow-sm">
+    <div class="card-header bg-blue-700 text-white">
+      <h4 class="mb-0">Ajouter une intervention</h4>
+    </div>
+
+    <div class="card-body">
+      <form [formGroup]="form" (ngSubmit)="onSubmit()">
+        <!-- Date -->
+
+        <div class="form-floating mb-3">
+          <input type="date" class="form-control" formControlName="datePlanifiee" />
+
+          <label>Date planifiée</label>
+        </div>
+
+        <!-- Site -->
+
+        <div class="form-floating mb-3">
+          <select class="form-select" formControlName="siteId">
+            <option [ngValue]="null">-- Choisir un site --</option>
+
+            <option *ngFor="let site of sites()" [value]="site.id">{{site.codeSite}} - {{site.adresse}}</option>
+          </select>
+
+          <label>Site</label>
+        </div>
+
+        <!-- Choix techniciens -->
+
+        <div class="form-floating mb-3">
+          <select class="form-select" (change)="addTechnicien($event)">
+            <option value="">-- Choisir un technicien --</option>
+
+            <option *ngFor="let tech of techniciens()" [value]="tech.id">{{tech.nom}} {{tech.prenom}}</option>
+          </select>
+
+          <label>Ajouter technicien</label>
+        </div>
+
+        <!-- Liste techniciens sélectionnés -->
+
+        <div class="mb-3" *ngIf="techniciensSelectionnes().length > 0">
+          <label class="fw-semibold">Techniciens affectés :</label>
+
+          <div class="mt-2">
+            <span *ngFor="let tech of techniciensSelectionnes()" class="badge bg-blue-500 text-white me-2 p-2">
+              {{tech.nom}} {{tech.prenom}}
+
+              <button type="button" class="btn btn-sm text-white ms-2" (click)="removeTechnicien(tech.id)">×</button>
+            </span>
+          </div>
+        </div>
+
+        <button class="btn bg-purple-600 text-white" type="submit" [disabled]="form.invalid">Enregistrer</button>
+
+        <a routerLink="/interventions" class="btn btn-secondary ms-2">Annuler</a>
+      </form>
+    </div>
+  </div>
+</div>

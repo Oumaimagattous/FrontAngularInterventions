@@ -14,6 +14,10 @@ export interface Intervention {
 
   commentaire?: string;
 
+  siteId: number;
+
+  techniciensIds: number[];
+
   techniciens: string[];
 
   prestations: string[];
@@ -21,5 +25,4 @@ export interface Intervention {
   nombrePhotos: number;
 
   equipements: EquipementIntervention[];
-
 }

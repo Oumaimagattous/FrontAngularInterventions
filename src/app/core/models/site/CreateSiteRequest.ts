@@ -2,8 +2,8 @@ export interface CreateSite {
 
   codeSite: string;
 
-  adresse?: string;
+  adresse: string;
 
-  clientId: number;
+  clientId:  number | null;
 
 }

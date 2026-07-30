@@ -1,4 +1,4 @@
-import { Intervention } from '../intervention/intervention';
+import { Intervention } from '../intervention/Intervention';
 
 export interface Site {
 
@@ -6,7 +6,7 @@ export interface Site {
 
   codeSite: string;
 
-  adresse?: string;
+  adresse: string;
 
   clientId: number;
 

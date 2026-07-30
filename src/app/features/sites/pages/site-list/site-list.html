@@ -1,0 +1,43 @@
+<div class="container-fluid">
+  <div class="card shadow-sm">
+    <div class="card-header bg-blue-700 text-white d-flex justify-content-between align-items-center">
+      <h4 class="mb-0">Gestion des sites</h4>
+
+      <a routerLink="/sites/create" class="btn bg-purple-600 text-white">+ Ajouter Site</a>
+    </div>
+
+    <div class="card-body">
+      <div class="table-responsive">
+        <table class="table table-hover align-middle">
+          <thead class="bg-blue-100">
+            <tr>
+              <th>Code Site</th>
+
+              <th>Adresse</th>
+
+              <th>Client</th>
+
+              <th class="text-center">Actions</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <tr *ngFor="let site of sites()">
+              <td class="fw-semibold">{{site.codeSite}}</td>
+
+              <td>{{site.adresse}}</td>
+
+              <td>{{site.clientNom}}</td>
+
+              <td class="text-center">
+                <a class="btn btn-sm bg-blue-300 text-white" [routerLink]="['/sites/detail',site.id]">Détails</a>
+                <a class="btn btn-sm bg-blue-500 text-white me-2" [routerLink]="['/sites/edit', site.id]">Modifier</a>
+                <button class="btn btn-sm bg-purple-600 text-white" (click)="delete(site.id)">Supprimer</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

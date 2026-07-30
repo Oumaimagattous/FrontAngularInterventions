@@ -2,8 +2,8 @@ export interface CreateMoulinette {
 
   clientId: number;
 
-  periodeDebut: Date;
+  periodeDebut:string | null;
 
-  periodeFin: Date;
+  periodeFin:string | null;
 
 }
