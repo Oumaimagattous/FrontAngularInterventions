@@ -1,47 +1,265 @@
 <div class="container-fluid">
+
   @if(error()){
 
-  <div class="alert alert-danger">{{error()}}</div>
+  <div class="alert alert-danger">
 
-  } @if(equipement()){
+    {{error()}}
 
-  <div class="card shadow-sm">
-    <div class="card-header bg-blue-700 text-white">
-      <h4>Détails de l'équipement</h4>
-    </div>
-
-    <div class="card-body">
-      <div class="row">
-        <div class="col-md-6 mb-3">
-          <strong>Code :</strong>
-
-          {{equipement()?.code}}
-        </div>
-
-        <div class="col-md-6 mb-3">
-          <strong>Désignation :</strong>
-
-          {{equipement()?.designation}}
-        </div>
-
-        <div class="col-md-6 mb-3">
-          <strong>Quantité en stock :</strong>
-
-          <span class="badge bg-success">{{equipement()?.quantiteStock}}</span>
-        </div>
-
-        <div class="col-md-6 mb-3">
-          <strong>Nombre de mouvements :</strong>
-
-          <span class="badge bg-primary">{{equipement()?.nombreMouvements}}</span>
-        </div>
-      </div>
-    </div>
-
-    <div class="card-footer text-end">
-      <a routerLink="/equipements" class="btn btn-secondary">Retour</a>
-    </div>
   </div>
 
   }
+
+  @if(equipement(); as eq){
+
+  <div class="card shadow-sm">
+
+    <div class="card-header bg-blue-700 text-white">
+
+      <h4>Détails de l'équipement</h4>
+
+    </div>
+
+    <div class="card-body">
+
+      <div class="row mb-4">
+
+        <div class="col-md-6">
+
+          <strong>Code :</strong>
+
+          {{eq.code}}
+
+        </div>
+
+        <div class="col-md-6">
+
+          <strong>Désignation :</strong>
+
+          {{eq.designation}}
+
+        </div>
+
+      </div>
+
+      <div class="row text-center mb-4">
+
+        <div class="col-md-3">
+
+          <div class="card border-success">
+
+            <div class="card-body">
+
+              <h6>Entrées</h6>
+
+              <h3 class="text-success">
+
+                {{eq.quantiteEntree}}
+
+              </h3>
+
+            </div>
+
+          </div>
+
+        </div>
+
+        <div class="col-md-3">
+
+          <div class="card border-danger">
+
+            <div class="card-body">
+
+              <h6>Sorties</h6>
+
+              <h3 class="text-danger">
+
+                {{eq.quantiteSortie}}
+
+              </h3>
+
+            </div>
+
+          </div>
+
+        </div>
+
+
+
+        <div class="col-md-3">
+
+          <div class="card border-primary">
+
+            <div class="card-body">
+
+              <h6>Stock actuel</h6>
+
+              <h3 class="text-primary">
+
+                {{eq.stockActuel}}
+
+              </h3>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+      <h5 class="mb-3">
+
+        Historique des mouvements
+
+      </h5>
+
+      @if(eq.mouvements.length > 0){
+
+      <div class="table-responsive">
+
+        <table class="table table-bordered table-hover">
+
+          <thead class="table-light">
+
+            <tr>
+
+              <th>Date</th>
+
+              <th>Type</th>
+
+              <th>Quantité</th>
+
+              <th>Observation</th>
+
+              <th>Intervention</th>
+
+            </tr>
+
+          </thead>
+
+          <tbody>
+
+            @for(m of eq.mouvements; track m.id){
+
+            <tr>
+
+              <td>
+
+                {{m.dateMouvement | date:'dd/MM/yyyy HH:mm'}}
+
+              </td>
+
+              <td>
+
+                @switch(m.typeMouvement){
+
+                  @case(0){
+
+                    <span class="badge bg-success">
+
+                      Entrée
+
+                    </span>
+
+                  }
+
+                  @case(1){
+
+                    <span class="badge bg-danger">
+
+                      Sortie
+
+                    </span>
+
+                  }
+
+                  @case(2){
+
+                    <span class="badge bg-warning text-dark">
+
+                      Affectation
+
+                    </span>
+
+                  }
+
+                }
+
+              </td>
+
+              <td>
+
+                {{m.quantite}}
+
+              </td>
+
+              <td>
+
+                {{m.observation}}
+
+              </td>
+
+              <td>
+
+  @if(m.interventionId){
+
+    <a
+      [routerLink]="['/interventions/detail', m.interventionId]"
+      class="badge bg-primary text-decoration-none">
+
+      #{{m.interventionId}}
+
+    </a>
+
+  } @else {
+
+    <span class="text-muted">
+      -
+    </span>
+
+  }
+
+</td>
+
+            </tr>
+
+            }
+
+          </tbody>
+
+        </table>
+
+      </div>
+
+      }
+
+      @else{
+
+      <div class="alert alert-info">
+
+        Aucun mouvement enregistré.
+
+      </div>
+
+      }
+
+    </div>
+
+    <div class="card-footer text-end">
+
+      <a routerLink="/equipements"
+
+         class="btn btn-secondary">
+
+        Retour
+
+      </a>
+
+    </div>
+
+  </div>
+
+  }
+
 </div>

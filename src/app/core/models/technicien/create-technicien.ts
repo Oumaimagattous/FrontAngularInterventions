@@ -7,7 +7,9 @@ export interface CreateTechnicien {
   email: string;
 
   matricule: string;
+
+  telephone: string;
   
-  password: string;
+ // password: string;
 
 }

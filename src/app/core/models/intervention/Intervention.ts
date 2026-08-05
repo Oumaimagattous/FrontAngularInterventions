@@ -1,4 +1,5 @@
 import { EquipementIntervention } from '../equipement/equipement-intervention';
+import { PhotoIntervention } from '../photo/PhotoIntervention';
 
 export interface Intervention {
 
@@ -20,9 +21,17 @@ export interface Intervention {
 
   techniciens: string[];
 
+  prestationsIds: number[];
+
   prestations: string[];
 
   nombrePhotos: number;
 
   equipements: EquipementIntervention[];
+
+  photos?: PhotoIntervention[];   
+
+  client: string;
+
+  site: string;
 }

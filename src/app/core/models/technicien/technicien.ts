@@ -10,7 +10,9 @@ export interface Technicien {
 
   matricule: string;
 
-  password: string;
+  telephone: string;
+
+  //password: string;
 
   nombreInterventions: number;
 

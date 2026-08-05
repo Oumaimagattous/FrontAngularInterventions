@@ -26,7 +26,7 @@ export class TechnicienCreateComponent {
     nom: '',
     prenom: '',
     email: '',
-    password: '',
+    telephone: '',
     matricule: ''
   };
 
@@ -43,7 +43,7 @@ export class TechnicienCreateComponent {
       !this.technicien.nom ||
       !this.technicien.prenom ||
       !this.technicien.email ||
-      !this.technicien.password ||
+      !this.technicien.telephone ||
       !this.technicien.matricule
     ) {
 

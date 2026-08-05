@@ -52,7 +52,7 @@ export const NavigationItems: NavigationItem[] = [
             url: '/login',
             target: true,
             breadcrumbs: false
-          },
+          }/*,
           {
             id: 'register',
             title: 'Register',
@@ -60,7 +60,7 @@ export const NavigationItems: NavigationItem[] = [
             url: '/register',
             target: true,
             breadcrumbs: false
-          }
+          }*/
         ]
       }
     ]
@@ -187,10 +187,17 @@ export const NavigationItems: NavigationItem[] = [
       type: 'item',
       url: '/moulinettes',
       icon: 'ti ti-file-invoice'
+    },
+    {
+      id: 'factures',
+      title: 'Factures',
+      type: 'item',
+      url: '/factures',
+      icon: 'ti ti-file-invoice'
     }
 
   ]
-},
+}/*,
   {
     id: 'elements',
     title: 'Elements',
@@ -251,5 +258,5 @@ export const NavigationItems: NavigationItem[] = [
         external: true
       }
     ]
-  }
+  }*/
 ];

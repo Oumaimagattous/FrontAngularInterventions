@@ -20,11 +20,14 @@
           <select class="form-select" formControlName="siteId">
             <option [ngValue]="null">-- Choisir un site --</option>
 
-            <option *ngFor="let site of sites()" [value]="site.id">{{site.codeSite}} - {{site.adresse}}</option>
+            <option *ngFor="let site of sites()" [value]="site.id">{{site.code}} - {{site.adresse}}</option>
           </select>
 
           <label>Site</label>
         </div>
+
+
+        
 
         <!-- Choix techniciens -->
 
@@ -52,8 +55,51 @@
           </div>
         </div>
 
-        <button class="btn bg-purple-600 text-white" type="submit" [disabled]="form.invalid">Enregistrer</button>
+          
+             <!-- Choix prestations -->
 
+        <div class="form-floating mb-3">
+          <select class="form-select" (change)="addPrestation($event)">
+            <option value="">-- Choisir une prestation  --</option>
+
+             <option *ngFor="let pres of prestations()" [value]="pres.id">{{pres.designation}}</option>
+          </select>
+
+          <label>Ajouter Prestation</label>
+        </div>
+      
+        <!-- Liste prestation sélectionnés -->
+
+        <div class="mb-3" *ngIf="prestationsSelectionnes().length > 0">
+          <label class="fw-semibold">Prestations affectés :</label>
+
+          <div class="mt-2">
+            <span *ngFor="let pres of prestationsSelectionnes()" class="badge bg-blue-500 text-white me-2 p-2">
+              {{pres.designation}} 
+
+              <button type="button" class="btn btn-sm text-white ms-2" (click)="removePrestation(pres.id)">×</button>
+            </span>
+          </div>
+        </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+        <button 
+  class="btn text-white"
+  type="submit"
+  [disabled]="form.invalid">
+  Enregistrer
+</button>
         <a routerLink="/interventions" class="btn btn-secondary ms-2">Annuler</a>
       </form>
     </div>

@@ -4,6 +4,8 @@ import { ActivatedRoute, RouterModule } from '@angular/router';
 
 import { Equipement } from 'src/app/core/models/equipement/equipement';
 import { EquipementService } from '../../services/equipements.service';
+import { EquipementDetail }
+from 'src/app/core/models/equipement/equipement-detail';
 
 @Component({
   selector: 'app-equipement-detail',
@@ -25,7 +27,7 @@ export class EquipementDetailComponent {
 
   private route = inject(ActivatedRoute);
 
-  equipement = signal<Equipement | null>(null);
+  equipement = signal<EquipementDetail | null>(null);
 
   error = signal('');
 
@@ -41,22 +43,22 @@ export class EquipementDetailComponent {
 
   loadEquipement(id: number): void {
 
-    this.equipementService.getById(id).subscribe({
+    this.equipementService.getDetail(id).subscribe({
 
-      next: (data) => {
+      next: data => {
 
-        console.log('EQUIPEMENT DETAIL :', data);
+        console.log(data);
 
         this.equipement.set(data);
 
       },
 
-      error: (err) => {
+      error: err => {
 
         console.error(err);
 
         this.error.set(
-          'Impossible de charger l’équipement'
+          "Impossible de charger l'équipement"
         );
 
       }

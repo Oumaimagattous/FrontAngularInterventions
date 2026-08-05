@@ -6,6 +6,8 @@ export interface UpdateTechnicien {
 
   email: string;
 
+  telephone: string;
+
   matricule: string;
 
 }

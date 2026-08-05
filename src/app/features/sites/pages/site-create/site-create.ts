@@ -10,6 +10,7 @@ import { ClientService } from '../../../client/services/client.service';
 import { CreateSite } from 'src/app/core/models/site/CreateSiteRequest';
 import { Client } from 'src/app/core/models/client/Client';
 import { FormsModule } from '@angular/forms';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-site-create',
@@ -24,6 +25,7 @@ export class SiteCreateComponent {
   private clientService = inject(ClientService);
 
   private router = inject(Router);
+  private location = inject(Location);
 
   submitted = signal(false);
 
@@ -34,13 +36,13 @@ export class SiteCreateComponent {
   clients = signal<Client[]>([]);
 
   siteModal = signal<CreateSite>({
-    codeSite: '',
+    code: '',
     adresse: '',
     clientId: 0
   });
 
   siteForm = form(this.siteModal, (schemaPath) => {
-    required(schemaPath.codeSite, {
+    required(schemaPath.code, {
       message: 'Code site obligatoire'
     });
 
@@ -113,4 +115,7 @@ export class SiteCreateComponent {
   convertToNumber(value: string): number {
     return Number(value);
   }
+    retour(): void {
+  this.location.back();
+}
 }

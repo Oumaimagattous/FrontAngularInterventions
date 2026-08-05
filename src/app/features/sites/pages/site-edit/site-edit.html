@@ -13,19 +13,19 @@
             type="text"
             class="form-control"
             placeholder="Code Site"
-            [formField]="siteForm.codeSite"
+            [formField]="siteForm.code"
             [class.is-invalid]="
               submitted() &&
-              siteForm.codeSite().invalid()
+              siteForm.code().invalid()
             "
           />
 
           <label>Code Site</label>
 
-          @if(submitted() && siteForm.codeSite().invalid()){
+          @if(submitted() && siteForm.code().invalid()){
 
           <div class="invalid-feedback">
-            @for(error of siteForm.codeSite().errors(); track error.kind){
+            @for(error of siteForm.code().errors(); track error.kind){
 
             <div>{{error.message}}</div>
 
@@ -83,7 +83,7 @@
 
             <option [value]="client.id"
             [selected]="client.id === siteModal().clientId">
-            {{client.raisonSociale}}</option>
+            {{client.nom}}</option>
 
             }
           </select>
@@ -99,6 +99,12 @@
           <button type="submit" class="btn btn-secondary" [disabled]="loading()">
             @if(loading()){ Modification... } @else{ Modifier Site }
           </button>
+
+           <a
+    routerLink="/sites"
+    class="btn btn-outline-secondary">
+    Annuler
+  </a>
         </div>
       </form>
     </div>

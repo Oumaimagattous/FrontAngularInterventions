@@ -18,6 +18,18 @@
           <p>{{item.numero}}</p>
         </div>
 
+         <div class="col-md-2">
+    <strong>Client :</strong>
+
+    <div>{{item.client}}</div>
+  </div>
+
+  <div class="col-md-2">
+    <strong>Site :</strong>
+
+    <div>{{item.site}}</div>
+  </div>
+
         <div class="col-md-4">
           <strong>Date planifiée :</strong>
 
@@ -111,12 +123,40 @@
 
       <!-- Photos -->
 
-      <h5 class="text-primary">Photos</h5>
+     <!-- PHOTOS -->
 
+      <h3 class="section-title mt-4 mb-3">
+        <i class="ti ti-camera me-2"></i>
+        Photos
+      </h3>
       <p>
         Nombre de photos :
         <strong>{{item.nombrePhotos}}</strong>
       </p>
+
+      @if(item.photos && item.photos.length > 0){
+
+      <div class="row g-3 mb-4">
+        @for(photo of item.photos; track photo.id){
+
+        <div class="col-md-3 col-sm-6">
+          <div class="card shadow-sm">
+            <a [href]="getPhotoUrl(photo.chemin)" target="_blank">
+              <img [src]="getPhotoUrl(photo.chemin)" class="card-img-top" style="height: 200px; object-fit: cover" />
+            </a>
+            <div class="card-body p-2">
+              <small class="text-muted">{{photo.dateCapture | date:'dd/MM/yyyy HH:mm'}}</small>
+            </div>
+          </div>
+        </div>
+        }
+      </div>
+
+      } @else {
+
+      <p class="text-muted">Aucune photo disponible</p>
+
+      }
 
       <div class="mt-4">
         <button class="btn btn-primary me-2" (click)="genererFiche()">Générer fiche PDF</button>

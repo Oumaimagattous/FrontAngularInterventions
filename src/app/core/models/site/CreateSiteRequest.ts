@@ -1,6 +1,6 @@
 export interface CreateSite {
 
-  codeSite: string;
+  code: string;
 
   adresse: string;
 

@@ -110,6 +110,15 @@ const appRoutes: Routes = [
             .then(m => m.MOULINETTE_ROUTES)
 },
 
+{
+  path:'factures',
+
+  loadChildren:()=> 
+  import('./features/factures/facture.routes')
+  .then(m=>m.FACTURE_ROUTES)
+
+},
+
     ]
   },
 

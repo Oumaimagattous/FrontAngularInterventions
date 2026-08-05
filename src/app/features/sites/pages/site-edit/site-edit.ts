@@ -42,7 +42,7 @@ export class SiteEditComponent {
   siteId!: number;
 
   siteModal = signal<CreateSite>({
-    codeSite: '',
+    code: '',
 
     adresse: '',
 
@@ -50,7 +50,7 @@ export class SiteEditComponent {
   });
 
   siteForm = form(this.siteModal, (schemaPath) => {
-    required(schemaPath.codeSite, {
+    required(schemaPath.code, {
       message: 'Code site obligatoire'
     });
 
@@ -89,7 +89,7 @@ export class SiteEditComponent {
         console.log('SITE EDIT :', site);
 
         this.siteModal.set({
-          codeSite: site.codeSite,
+          code: site.code,
 
           adresse: site.adresse,
 

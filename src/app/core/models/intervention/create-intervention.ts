@@ -4,6 +4,9 @@ export interface CreateIntervention {
 
   siteId: number;
 
-  techniciensIds: number[];
+ techniciensIds: number[];
+
+ prestationsIds: number[];
+  
 
 }

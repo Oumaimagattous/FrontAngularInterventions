@@ -1,10 +1,19 @@
 import { Intervention } from '../intervention/Intervention';
 
+
+
+
+export interface PhotoSite{
+  id:number;
+  nomFichier:string;
+  chemin:string;
+  dateCapture:string;
+}
 export interface Site {
 
   id: number;
 
-  codeSite: string;
+  code: string;
 
   adresse: string;
 
@@ -13,5 +22,7 @@ export interface Site {
   clientNom: string;
 
   interventions: Intervention[];
+
+  photos:PhotoSite[];
 
 }

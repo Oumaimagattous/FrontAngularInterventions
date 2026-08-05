@@ -69,6 +69,13 @@ export class InterventionDetailComponent implements OnInit {
     });
   }
 
+    getPhotoUrl(path: string): string {
+    const url = 'http://localhost:5022' + path;
+    console.log('PHOTO PATH =', path);
+    console.log('PHOTO URL =', url);
+    return url;
+  }
+
   genererFiche() {
     if (!this.intervention()) return;
 

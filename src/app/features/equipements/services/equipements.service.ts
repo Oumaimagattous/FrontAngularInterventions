@@ -6,6 +6,8 @@ import { environment } from '../../../../environments/environment';
 
 import { Equipement } from 'src/app/core/models/equipement/equipement';
 import { CreateEquipement } from 'src/app/core/models/equipement/create-equipement';
+import { EquipementDetail } from
+'src/app/core/models/equipement/equipement-detail';
 
 @Injectable({
   providedIn: 'root'
@@ -34,4 +36,11 @@ export class EquipementService {
   delete(id: number): Observable<void> {
     return this.http.delete<void>(`${this.api}/${id}`);
   }
+  getDetail(id: number): Observable<EquipementDetail> {
+
+  return this.http.get<EquipementDetail>(
+    `${this.api}/${id}/detail`
+  );
+
+}
 }

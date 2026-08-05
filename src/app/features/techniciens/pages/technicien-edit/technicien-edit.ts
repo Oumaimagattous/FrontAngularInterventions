@@ -30,6 +30,7 @@ export class TechnicienEditComponent {
     nom: '',
     prenom: '',
     email: '',
+    telephone: '',
     matricule: ''
   };
 
@@ -47,6 +48,7 @@ export class TechnicienEditComponent {
       nom: this.technicien.nom,
       prenom: this.technicien.prenom,
       email: this.technicien.email,
+      telephone: this.technicien.telephone,
       matricule: this.technicien.matricule
 
     };

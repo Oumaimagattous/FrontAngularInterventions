@@ -1,0 +1,150 @@
+<div class="container-fluid">
+  @if(error()){
+
+  <div class="alert alert-danger">{{error()}}</div>
+
+  } @if(facture()){
+
+  <div class="row justify-content-center">
+    <div class="col-12">
+      <div class="card border-0 shadow-sm">
+        <!-- HEADER -->
+
+        <div class="card-header bg-blue-700 text-white py-3 d-flex justify-content-between align-items-center flex-wrap gap-2">
+          <h3 class="mb-0 fw-semibold">Facture {{facture()?.numeroFacture}}</h3>
+
+          <div class="d-flex gap-2 flex-wrap">
+            <button class="btn btn-pdf" (click)="downloadPdf()">
+              <i class="ti ti-file-type-pdf me-1"></i>
+
+              PDF
+            </button>
+
+            @if(facture()?.statut === 'Brouillon'){
+
+            <button class="btn btn-send" (click)="envoyer()">
+              <i class="ti ti-send me-1"></i>
+
+              Envoyer
+            </button>
+
+            }
+          </div>
+        </div>
+
+        <!-- BODY -->
+
+        <div class="card-body">
+          <!-- INFORMATIONS GENERALES -->
+
+          <div class="row mb-4 gy-3">
+            <div class="col-md-4 col-sm-6">
+              <strong>Numéro :</strong>
+
+              <div>{{facture()?.numeroFacture}}</div>
+            </div>
+
+            <div class="col-md-4 col-sm-6">
+              <strong>Date :</strong>
+
+              <div>{{facture()?.dateFacture | date:'dd/MM/yyyy'}}</div>
+            </div>
+
+            <div class="col-md-4 col-sm-12">
+              <strong>Client :</strong>
+
+              <div>{{facture()?.client || '-'}}</div>
+            </div>
+          </div>
+
+          <div class="row mb-4 gy-3">
+            <div class="col-md-4 col-sm-6">
+              <strong>Statut :</strong>
+
+              <div class="mt-2">
+                @if(facture()?.statut === 'Brouillon'){
+
+                <span class="badge-status badge-brouillon">Brouillon</span>
+
+                } @else if(facture()?.statut === 'Envoyee'){
+
+                <span class="badge-status badge-envoyee">Envoyée</span>
+
+                } @else if(facture()?.statut === 'Payee'){
+
+                <span class="badge-status badge-payee">Payée</span>
+
+                } @else {
+
+                <span class="badge-status badge-annulee">{{facture()?.statut}}</span>
+
+                }
+              </div>
+            </div>
+
+            <div class="col-md-4 col-sm-6">
+              <strong>Montant HT :</strong>
+
+              <div>{{facture()?.montantHT}} DT</div>
+            </div>
+
+            <div class="col-md-4 col-sm-12">
+              <strong>TVA :</strong>
+
+              <div>{{facture()?.tva}} DT</div>
+            </div>
+          </div>
+
+          <div class="alert alert-light border mb-4">
+            <h5 class="mb-0">
+              Total TTC :
+
+              <span class="fw-bold">{{facture()?.montantTTC}} DT</span>
+            </h5>
+          </div>
+
+          <!-- LIGNES FACTURE -->
+
+          <h5 class="mb-3">Détails des prestations</h5>
+
+          <div class="table-responsive">
+            <table class="table table-hover align-middle">
+              <thead class="table-header-custom">
+                <tr>
+                  <th>Site</th>
+
+                  <th>Prestation</th>
+
+                  <th>Prix</th>
+                </tr>
+              </thead>
+
+              <tbody>
+                @for(ligne of facture()?.lignes; track ligne){
+
+                <tr>
+                  <td>{{ligne.site}}</td>
+
+                  <td>{{ligne.prestation}}</td>
+
+                  <td class="fw-semibold">{{ligne.prix}} DT</td>
+                </tr>
+
+                }
+              </tbody>
+            </table>
+          </div>
+
+          <div class="d-flex justify-content-end mt-4">
+            <button class="btn btn-back" routerLink="/factures">
+              <i class="ti ti-arrow-left me-1"></i>
+              Retour
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  }
+</div>

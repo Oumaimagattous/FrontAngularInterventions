@@ -1,97 +1,731 @@
 <div class="container-fluid">
-  @if(error()){
 
-  <div class="alert alert-danger">{{error()}}</div>
 
-  } @if(site()){
+@if(site()){
 
-  <!-- INFORMATIONS SITE -->
 
-  <div class="card shadow-sm mb-4">
-    <div class="card-header bg-blue-700 text-white">
-      <h4>Détails du site</h4>
-    </div>
+<div class="card shadow-sm border-0">
 
-    <div class="card-body">
-      <div class="row">
-        <div class="col-md-6 mb-3">
-          <strong>Code Site :</strong>
 
-          {{site()?.codeSite}}
-        </div>
+<div class="card-header bg-blue-700 text-white">
 
-        <div class="col-md-6 mb-3">
-          <strong>Client :</strong>
+<h3 class="mb-0">
+Détail du Site
+</h3>
 
-          {{site()?.clientNom}}
-        </div>
-
-        <div class="col-md-12">
-          <strong>Adresse :</strong>
-
-          {{site()?.adresse}}
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- INTERVENTIONS -->
-
-  <div class="card shadow-sm">
-    <div class="card-header bg-purple-600 text-white">
-      <h4>Interventions</h4>
-    </div>
-
-    <div class="card-body">
-      @if(site()?.interventions?.length){
-
-      <div class="table-responsive">
-        <table class="table table-hover">
-          <thead class="bg-blue-100">
-            <tr>
-              <th>Numéro</th>
-
-              <th>Date planifiée</th>
-
-              <th>Statut</th>
-
-              <th>Techniciens</th>
-            </tr>
-          </thead>
-
-          <tbody>
-            @for(intervention of site()?.interventions; track intervention.id){
-
-            <tr>
-              <td>{{intervention.numero}}</td>
-
-              <td>{{intervention.datePlanifiee | date:'dd/MM/yyyy'}}</td>
-
-              <td>
-                <span class="badge bg-blue-500 text-white">{{intervention.statut}}</span>
-              </td>
-
-              <td>
-                @for(tech of intervention.techniciens; track tech){
-
-                <div>{{tech}}</div>
-
-                }
-              </td>
-            </tr>
-
-            }
-          </tbody>
-        </table>
-      </div>
-
-      } @else{
-
-      <div class="text-muted">Aucune intervention pour ce site</div>
-
-      }
-    </div>
-  </div>
-
-  }
 </div>
+
+
+
+<div class="card-body">
+
+
+
+<!-- Informations du site -->
+
+<div class="row">
+
+
+<div class="col-md-6 mb-3">
+
+<strong>Code :</strong><br>
+
+{{ site()?.code }}
+
+</div>
+
+
+
+<div class="col-md-6 mb-3">
+
+<strong>Adresse :</strong><br>
+
+{{ site()?.adresse }}
+
+</div>
+
+
+
+<div class="col-md-6 mb-3">
+
+<strong>Client :</strong><br>
+
+{{ site()?.clientNom }}
+
+</div>
+
+
+</div>
+
+
+
+
+<hr>
+
+
+
+
+
+<!-- Interventions -->
+
+<h5 class="mb-3">
+Interventions
+</h5>
+
+
+
+
+@if((site()?.interventions ?? []).length > 0){
+
+
+
+<div class="table-responsive">
+
+
+<table class="table table-bordered table-hover align-middle">
+
+
+<thead class="table-light">
+
+
+<tr>
+
+<th>Numéro</th>
+
+<th>Date planifiée</th>
+
+<th>Date réalisation</th>
+
+<th>Statut</th>
+
+<th>Techniciens</th>
+
+<th>Prestations</th>
+
+<th>Équipements</th>
+
+<th>Photos</th>
+
+<th>Commentaire</th>
+
+
+</tr>
+
+
+</thead>
+
+
+
+
+<tbody>
+
+
+
+@for(intervention of site()?.interventions ?? []; track intervention.id){
+
+
+
+<tr>
+
+
+
+<td>
+
+{{ intervention.numero }}
+
+</td>
+
+
+
+
+
+<td>
+
+{{ intervention.datePlanifiee | date:'dd/MM/yyyy HH:mm' }}
+
+</td>
+
+
+
+
+
+<td>
+
+
+@if(intervention.dateRealisation){
+
+{{ intervention.dateRealisation | date:'dd/MM/yyyy HH:mm' }}
+
+}
+
+@else{
+
+-
+
+}
+
+
+</td>
+
+
+
+
+
+<td>
+
+
+<span
+
+class="badge"
+
+[class.bg-success]="intervention.statut === 'Validee'"
+
+[class.bg-warning]="intervention.statut !== 'Validee'">
+
+
+{{ intervention.statut }}
+
+
+</span>
+
+
+</td>
+
+
+
+
+
+<td>
+
+
+@if(intervention.techniciens?.length > 0){
+
+
+<ul class="mb-0 ps-3">
+
+
+@for(tech of intervention.techniciens; track tech){
+
+
+<li>
+
+{{ tech }}
+
+</li>
+
+
+}
+
+
+</ul>
+
+
+}
+
+@else{
+
+-
+
+}
+
+
+</td>
+
+
+
+
+
+
+<td>
+
+
+@if(intervention.prestations?.length > 0){
+
+
+<ul class="mb-0 ps-3">
+
+
+@for(prestation of intervention.prestations; track prestation){
+
+
+<li>
+
+{{ prestation }}
+
+</li>
+
+
+}
+
+
+</ul>
+
+
+}
+
+@else{
+
+-
+
+}
+
+
+</td>
+
+
+
+
+
+
+<td>
+
+
+
+@if(intervention.equipements?.length > 0){
+
+
+<ul class="mb-0 ps-3">
+
+
+@for(eq of intervention.equipements; track eq.designation){
+
+
+<li>
+
+
+<strong>
+
+{{ eq.designation }}
+
+</strong>
+
+
+<br>
+
+
+Quantité :
+
+{{ eq.quantite }}
+
+
+</li>
+
+
+}
+
+
+</ul>
+
+
+}
+
+@else{
+
+-
+
+}
+
+
+
+</td>
+
+
+
+
+
+
+
+<td>
+
+
+<span class="badge bg-info">
+
+
+{{ intervention.nombrePhotos }}
+
+
+</span>
+
+
+</td>
+
+
+
+
+
+
+
+<td style="min-width:250px;">
+
+
+
+@if(intervention.commentaire){
+
+
+<small>
+
+{{ intervention.commentaire }}
+
+</small>
+
+
+}
+
+@else{
+
+-
+
+}
+
+
+</td>
+
+
+
+
+
+</tr>
+
+
+
+}
+
+
+
+</tbody>
+
+
+
+</table>
+
+
+</div>
+
+
+
+}
+
+@else{
+
+
+<div class="alert alert-info">
+
+Aucune intervention disponible pour ce site.
+
+</div>
+
+
+}
+
+
+
+
+
+<hr>
+
+
+
+
+
+
+<!-- Photos -->
+
+
+<h5 class="mb-3">
+
+Photos
+
+</h5>
+
+
+
+
+
+@if((site()?.photos ?? []).length > 0){
+
+
+
+<div class="row">
+
+
+
+@for(photo of site()?.photos ?? []; track photo.id){
+
+
+
+<div class="col-lg-3 col-md-4 col-sm-6 mb-3">
+
+
+
+<div class="card h-100 shadow-sm">
+
+
+
+<img
+
+class="card-img-top"
+
+[src]="imageUrl + photo.chemin"
+
+[alt]="photo.nomFichier"
+
+style="height:220px; object-fit:cover; cursor:pointer;"
+
+(click)="ouvrirPhoto(photo)">
+
+
+<div class="card-body text-center">
+
+
+<small class="fw-semibold d-block">
+
+{{ photo.nomFichier }}
+
+</small>
+
+
+</div>
+
+
+
+</div>
+
+
+</div>
+
+
+
+}
+
+
+
+</div>
+
+
+
+}
+
+@else{
+
+
+<div class="alert alert-info">
+
+Aucune photo disponible.
+
+</div>
+
+
+}
+
+
+
+
+
+
+<div class="mt-4">
+
+
+<button
+
+type="button"
+
+class="btn btn-secondary"
+
+(click)="retour()">
+
+
+
+<i class="ti ti-arrow-left me-1"></i>
+
+Retour
+
+
+
+</button>
+
+
+
+</div>
+
+
+
+
+</div>
+
+
+
+</div>
+
+
+
+}
+
+
+
+@if(error()){
+
+
+
+<div class="alert alert-danger mt-3">
+
+{{ error() }}
+
+</div>
+
+
+
+}
+
+
+
+
+</div>
+
+
+
+
+
+
+
+
+
+<!-- Modal photo -->
+
+
+
+@if(selectedPhoto){
+
+
+
+<div class="photo-overlay">
+
+
+
+<div class="photo-modal">
+
+
+
+<button
+
+type="button"
+
+class="btn-close float-end"
+
+(click)="fermerPhoto()">
+
+</button>
+
+
+
+
+<div class="text-center mt-3">
+
+
+
+<img
+
+[src]="selectedPhoto"
+
+class="img-fluid rounded"
+
+[style.transform]="'scale(' + zoom() + ')'">
+
+
+
+</div>
+
+
+
+
+
+
+<div class="text-center mt-3">
+
+
+
+<h6 class="mb-1">
+
+{{ selectedNom }}
+
+</h6>
+
+
+
+
+<small class="text-muted">
+
+{{ selectedDate }}
+
+</small>
+
+
+
+
+</div>
+
+
+
+
+
+
+
+<div class="d-flex justify-content-between mt-4">
+
+
+
+<button
+
+type="button"
+
+class="btn btn-primary"
+
+(click)="photoPrecedente()">
+
+
+
+◀ Précédente
+
+
+
+</button>
+
+
+
+
+
+
+<button
+
+type="button"
+
+class="btn btn-primary"
+
+(click)="photoSuivante()">
+
+
+
+Suivante ▶
+
+
+
+</button>
+
+
+
+
+
+</div>
+
+
+
+
+
+</div>
+
+
+
+</div>
+
+
+
+}

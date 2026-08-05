@@ -1,0 +1,76 @@
+<div class="container-fluid">
+  <div class="row justify-content-center">
+    <div class="col-12 col-lg-8">
+      <div class="card border-0 shadow-sm">
+        <!-- HEADER -->
+
+        <div class="card-header bg-blue-700 text-white py-3">
+          <h3 class="mb-0 fw-semibold">Générer une facture</h3>
+        </div>
+
+        <!-- BODY -->
+
+        <div class="card-body">
+          <div class="mb-4">
+            <label class="form-label fw-semibold">Moulinette</label>
+
+            <select
+              class="form-select"
+              [ngModel]="model().moulinetteId"
+              (ngModelChange)="
+                model.update(m => ({
+                  ...m,
+                  moulinetteId: $event
+                }))
+              "
+            >
+              <option [ngValue]="0">Choisir une moulinette</option>
+
+              @for(m of moulinettes(); track m.id){
+
+              <option [ngValue]="m.id">
+                Moulinette #{{m.id}} | {{m.periodeDebut | date:'dd/MM/yyyy'}} → {{m.periodeFin | date:'dd/MM/yyyy'}} | {{m.montantTotal}} DT
+              </option>
+
+              }
+            </select>
+          </div>
+
+          <div class="mb-4">
+            <label class="form-label fw-semibold">TVA (%)</label>
+
+            <input
+              type="number"
+              class="form-control"
+              [ngModel]="model().tauxTVA"
+              (ngModelChange)="
+                model.update(m => ({
+                  ...m,
+                  tauxTVA: $event
+                }))
+              "
+            />
+          </div>
+
+          @if(error()){
+
+          <div class="alert alert-danger">{{error()}}</div>
+
+          }
+
+          <div class="d-flex justify-content-end mt-4">
+            <button class="btn btn-create" [disabled]="loading()" (click)="generate()">
+              @if(loading()){
+
+              <i class="ti ti-loader me-1"></i>
+              Génération... } @else {
+
+              <i class="ti ti-file-invoice me-1"></i>
+              Générer la facture }
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
